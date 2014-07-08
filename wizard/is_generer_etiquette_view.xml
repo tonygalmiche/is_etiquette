@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_is_generer_etiquette" model="ir.ui.view">
+            <field name="name">is.generer.etiquette.form</field>
+            <field name="model">is.generer.etiquette</field>
+            <field name="arch" type="xml">
+                <form string="Generer etiquettes de colis" version="7.0">
+                    <group>
+					    <field name="prodlot_id" on_change="onchange_prodlot_id(prodlot_id)" />
+						<field name="quantity" />
+                        <field name="nb_colis" />
+                    </group>
+                    <footer>
+                        <button string='Generer etiquettes' name="generer_etiquettes" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_generer_etiquettes" model="ir.actions.act_window">
+            <field name="name">Etiquettes d'un lot</field>
+            <field name="res_model">is.generer.etiquette</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_is_generer_etiquette"/>
+           <field name="target">new</field>
+        </record>
+		
+		<menuitem action="action_generer_etiquettes" 
+				  id="menu_action_generer_etiquettes" 
+				  parent="stock.menu_traceability" sequence="15"/>
+				  
+		
+		<record id="is_quantity_null_view" model="ir.ui.view">
+             <field name="name">is.quantity.null.view</field>
+             <field name="model">is.generer.etiquette</field>
+             <field name="arch" type="xml">
+                <form string="Quantite nulle" version="7.0">
+                	<p class="oe_grey">
+                       Il n'est pas possible de creer des etiquettes avec cet assistant car la quantite de colis est nulle. 
+                       Il faudra le faire manuellement
+                    </p>
+                    <footer>
+                        <button string="Close" class="oe_highlight" special="cancel"/>
+                    </footer>
+                </form>
+             </field>
+         </record>
+
+
+    </data>
+</openerp>

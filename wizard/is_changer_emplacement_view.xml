@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_is_changer_emplacement" model="ir.ui.view">
+            <field name="name">is.changer.emplacement.form</field>
+            <field name="model">is.changer.emplacement</field>
+            <field name="arch" type="xml">
+                <form string="changement d'emplacement de colis" version="7.0">
+                    <group>
+					    <field name="location_src_id" />
+						<field name="location_dest_id" />
+                        <field name="colis_line" >
+                        	<tree name="Colis" editable="bottom">
+                        		<field name="colis_id" on_change="onchange_colis_id(colis_id)" domain="[('location_id','=',parent.location_src_id)]"/>
+                        		<field name="quantity" />
+                        	</tree>
+                        </field>
+                    </group>
+                    <footer>
+                        <button string='Changer emplacements' name="changer_emplacements" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_is_changer_emplacement" model="ir.actions.act_window">
+            <field name="name">Changement emplacement</field>
+            <field name="res_model">is.changer.emplacement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           <field name="view_id" ref="view_is_changer_emplacement"/>
+           <field name="target">new</field>
+        </record>
+		
+		<menuitem action="action_is_changer_emplacement" 
+				  id="menu_action_is_changer_emplacement" 
+				  parent="stock.menu_traceability" sequence="15"/>
+
+
+    </data>
+</openerp>
