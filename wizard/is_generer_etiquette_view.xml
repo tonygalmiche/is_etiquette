@@ -10,6 +10,7 @@
                     <group>
 					    <field name="prodlot_id" on_change="onchange_prodlot_id(prodlot_id)" />
 						<field name="quantity" />
+						<field name="location_id" />
                         <field name="nb_colis" />
                     </group>
                     <footer>

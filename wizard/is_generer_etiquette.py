@@ -21,6 +21,7 @@ class is_generer_etiquette(osv.osv_memory):
     _columns = {
         'prodlot_id': fields.many2one('stock.production.lot', 'Numero de serie', required=True),
         'quantity': fields.float('Quantite', readonly=True),
+        'location_id': fields.many2one('stock.location', 'Emplacement colis', required=True),
         'nb_colis': fields.integer('Nombre de colis'),
     }
     
@@ -74,6 +75,7 @@ class is_generer_etiquette(osv.osv_memory):
                     vals = {
                         'prodlot_id': data['prodlot_id'][0],
                         'quantity': qty,
+                        'location_id': data['location_id'][0],
                         }
                     newid = etiquette_obj.create(cr, uid, vals, context=context)
                     result.append(newid)

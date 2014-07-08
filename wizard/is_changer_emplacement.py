@@ -53,6 +53,8 @@ class is_changer_emplacement(osv.osv_memory):
             for colis_id in data['colis_line']:
                 etiquette = colis_obj.read(cr, uid, colis_id, ['colis_id'], context=context)
                 colis = etiquette_obj.browse(cr, uid, etiquette['colis_id'][0], context=context)
+                # Mettre à jour le champ emplacement colis
+                etiquette_obj.write(cr, uid, etiquette['colis_id'][0], {'location_id': data['location_dest_id'][0]}, context=context)
 
                 value = move_obj.onchange_product_id(cr, uid, ids, colis.prodlot_id.product_id.id, False, False, False)['value']
                 vals = {
