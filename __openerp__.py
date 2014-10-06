@@ -3,7 +3,7 @@
 {
     'name': 'Gestion des etiquettes des colis',
     'version': '1.0',
-    'category': 'InfoSaone',
+    'category': 'InfoSaône',
     'description': """
 Gestion des etiquettes des colis et des mouvements de stocks de ceux-ci
     """,
